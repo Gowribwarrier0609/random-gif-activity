@@ -16,10 +16,10 @@ request, reads information from that request, and sends back HTML.
    incoming request. Change the greeting, save the file, stop the server with
    Ctrl-C, and run `go run .` again to see your change.
 
-The repository includes eleven cat, dog, and parrot GIFs in `gifs/`. The
-starter already serves that directory: open `/gifs/black-cat-roll.gif` in your
-browser to check. The GIFs are local files, so the app does not need Giphy or
-another image service.
+The [GIF list](gifs.txt) links to 146 animal GIFs from the
+[`adorbs` collection](https://github.com/snipe/animated-gifs/tree/master/adorbs).
+The images are hosted in course storage, so you can use them without an API key.
+Open a URL from the list in your browser to see what it shows.
 
 ## User stories
 
@@ -29,24 +29,24 @@ Work through these in order. We'll pause after each one to compare approaches.
 2. As a visitor, I see an HTML page with a heading and a colored background.
    Before writing the HTML response, set its content type with
    `w.Header().Set("Content-Type", "text/html; charset=utf-8")`.
-3. As a visitor, I see a GIF on the page. An HTML image tag looks like
-   `<img src="/gifs/black-cat-roll.gif" alt="A black cat rolling">`.
+3. As a visitor, I see a GIF on the page. Copy a URL from `gifs.txt` into an
+   HTML image tag, such as `<img src="GIF_URL" alt="A cute animal">`.
 4. As a visitor, I get a different GIF when I reload the page. Put at least
-   two local GIF paths in a Go slice and choose one in the request handler.
-   Browse the `gifs/` directory and pick your favorites.
-5. As a visitor, I can enter `cat`, `dog`, or `parrot` in a search box and
-   submit it. The server reads the query from `r.URL.Query().Get("q")` and
-   chooses a GIF from that category. An HTML form with `method="get"` and
-   `action="/"` will send the query as `/?q=dog`. For an unknown or empty
+   two GIF URLs in a Go slice and choose one in the request handler.
+   Browse `gifs.txt` and pick your favorites.
+5. As a visitor, I can enter `cat` or `puppy` in a search box and submit it.
+   The server reads the query from `r.URL.Query().Get("q")` and chooses from
+   the GIFs you assigned to that word. An HTML form with `method="get"` and
+   `action="/"` will send the query as `/?q=cat`. For an unknown or empty
    query, show a random GIF or a helpful message.
 
-The server handles the form and chooses a local image; the browser then asks
-the same server for that GIF. No API key, external proxy, or image CDN is needed.
+The server handles the form and chooses a URL; the browser then asks course
+storage for that GIF. No API key or image proxy is needed.
 
 ## Check your work
 
 - Refreshing `/` changes the GIF at least some of the time.
-- Submitting `dog` produces a URL containing `?q=dog` and a dog GIF.
+- Submitting `cat` produces a URL containing `?q=cat` and a cat GIF.
 - Submitting an unknown word does not crash the server.
 - The page still works after stopping and restarting `go run .`.
 
@@ -55,8 +55,8 @@ nicer. This is an in-class exercise; you do not need to deploy or submit it.
 
 ## GIF credits
 
-The GIFs come from [Mochi](https://github.com/koustavdatascience/mochi),
-[SalaryCat](https://github.com/Einswen/SalaryCat), and
-[Plant Pets](https://opengameart.org/content/plant-pets). See
-[`gifs/CREDITS.md`](gifs/CREDITS.md) for the source and license of each file.
-The Go starter and activity instructions are separate from those image assets.
+The GIFs are from [Snipe's `adorbs` collection](https://github.com/snipe/animated-gifs/tree/d5ff840d028c2438497e7a7709d6bb9d5f7c6d68/adorbs)
+at commit `d5ff840d028c2438497e7a7709d6bb9d5f7c6d68`.
+The [source README](https://github.com/snipe/animated-gifs/blob/master/README.md)
+credits the respective image copyright holders; it does not provide a license.
+Course copies expire after December 30, 2026.
