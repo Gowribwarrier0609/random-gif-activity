@@ -7,6 +7,8 @@ import (
 )
 
 func main() {
+	http.Handle("/gifs/", http.StripPrefix("/gifs/", http.FileServer(http.Dir("gifs"))))
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
 			http.NotFound(w, r)
