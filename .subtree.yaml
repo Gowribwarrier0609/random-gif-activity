@@ -1,0 +1,5 @@
+repo: random-gif-activity
+public: true
+description: In-class Go web server activity for MGT 656, Fall 2026
+team:
+  name: staff
